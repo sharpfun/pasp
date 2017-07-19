@@ -19,7 +19,7 @@ Default planner used in ROSPlan, apparently solves only the 1 robot/0 rings prob
 
 ### How to use
 ```bash
-./popf rcll_domain_production.pddl 'pddl/problems/incl durations/1 robot/1 order/0 rings.pddl'
+./popf pddl/domains/rcll_domain_production.pddl 'pddl/problems/incl durations/1 robot/1 order/0 rings.pddl'
 ```
 ## PLASP
 Translates PDDL to ASP [link](https://github.com/potassco/plasp). Contains encodings which is used to solve planning problems. 
