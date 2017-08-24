@@ -180,17 +180,16 @@
 	)
 
 	; CS_RETRIEVE - robot must use workpiece with cap and handle in cap station to have (cs-buffered ?mps ?capcol)
-	; ???????? why (at end (wp-at ?cc ?m OUTPUT)) (at end (wp-cap-color ?cc CAP_NONE))? it's empty there must be no cc, what's the point?
 	(:durative-action cs-retrieve-cap
 		:parameters (?m - mps ?cc - cap-carrier ?capcol - cap-color)
 		:duration (= ?duration 0)
 		:condition (and (at start (mps-type ?m CS)) (at start (mps-state ?m PROCESSING))
 										(at start (cs-prepared-for ?m CS_RETRIEVE))
 										(at start (wp-at ?cc ?m INPUT))  (at start (wp-cap-color ?cc ?capcol)))
-		:effect (and (at start (not (mps-state ?m PROCESSING)))
-								 (at start (not (wp-at ?cc ?m INPUT))) 
-		;						 (at end (mps-state ?m READY-AT-OUTPUT)) (at end (wp-at ?cc ?m OUTPUT)) (at start (not (wp-cap-color ?cc ?capcol))) (at end (wp-cap-color ?cc CAP_NONE))
-								 (at end (not (wp-usable ?cc))) (at end (mps-state ?m IDLE))
+		:effect (and (at start (not (mps-state ?m PROCESSING))) (at end (mps-state ?m READY-AT-OUTPUT))
+								 (at start (not (wp-at ?cc ?m INPUT))) (at end (wp-at ?cc ?m OUTPUT))
+								 (at end (mps-state ?m IDLE)) (at end (not (wp-usable ?cc))) 
+								 (at start (not (wp-cap-color ?cc ?capcol))) (at end (wp-cap-color ?cc CAP_NONE))
 								 (at end (cs-buffered ?m ?capcol)) (at end (cs-can-perform ?m CS_MOUNT)))
 	)
 	
