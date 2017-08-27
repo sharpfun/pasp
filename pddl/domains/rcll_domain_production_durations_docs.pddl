@@ -187,10 +187,9 @@
 										(at start (cs-prepared-for ?m CS_RETRIEVE))
 										(at start (wp-at ?cc ?m INPUT))  (at start (wp-cap-color ?cc ?capcol)))
 		:effect (and (at start (not (mps-state ?m PROCESSING))) (at end (mps-state ?m READY-AT-OUTPUT))
-								 (at start (not (wp-at ?cc ?m INPUT))) (at end (wp-at ?cc ?m OUTPUT))
-								 (at end (mps-state ?m IDLE)) (at end (not (wp-usable ?cc))) 
-								 (at start (not (wp-cap-color ?cc ?capcol))) (at end (wp-cap-color ?cc CAP_NONE))
-								 (at end (cs-buffered ?m ?capcol)) (at end (cs-can-perform ?m CS_MOUNT)))
+                                 (at start (not (wp-at ?cc ?m INPUT))) (at end (wp-at ?cc ?m OUTPUT))
+                                 (at start (not (wp-cap-color ?cc ?capcol))) (at end (wp-cap-color ?cc CAP_NONE))
+                                 (at end (cs-buffered ?m ?capcol)) (at end (cs-can-perform ?m CS_MOUNT)))
 	)
 	
 	; ring stations' rings are limited ZERO ONE TWO THREE - ring-num
@@ -375,7 +374,6 @@
 	)
 
 	; robot put bases required to make ring with specific color described in rs-ring-spec to ring station
-	; ????????????????? so this action puts caps inside ring station which is weird because it should use Base Element
 	(:durative-action wp-put-slide-cc
 		:parameters (?r - robot ?wp - cap-carrier ?m - mps ?rs-before ?rs-after - ring-num)
 		:duration (= ?duration 0)
